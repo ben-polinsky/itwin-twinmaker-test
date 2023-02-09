@@ -1,0 +1,14 @@
+{
+    "name": "itwin-twinmaker-connector-data-reader",
+    "scripts": {
+        "zip": "zip -9 -r data-reader.zip ./",
+        "clean": "rm -rf ./node_modules data-reader.zip",
+        "upload": "// todo"
+    },
+    "dependencies": {
+        "@itwin/core-backend": "^3.6.0",
+        "@itwin/core-common": "^3.6.0",
+        "@itwin/imodels-access-backend": "^2.2.1",
+        "@itwin/service-authorization": "^0.7.0"
+    }
+}
