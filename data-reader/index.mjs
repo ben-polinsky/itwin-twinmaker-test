@@ -23,6 +23,7 @@ class TestLambda {
     const hostConfig = {};
 
     hostConfig.hubAccess = this.hubAccess;
+    hostConfig.cacheDir = "/tmp"
     await IModelHost.startup(hostConfig);
     const token = await this.oidcClient.getAccessToken();
     if (token) {
