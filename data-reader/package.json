@@ -1,14 +1,21 @@
 {
-    "name": "itwin-twinmaker-connector-data-reader",
-    "scripts": {
-        "zip": "zip -9 -r data-reader.zip ./",
-        "clean": "rm -rf ./node_modules data-reader.zip",
-        "upload": "// todo"
-    },
-    "dependencies": {
-        "@itwin/core-backend": "^3.6.0",
-        "@itwin/core-common": "^3.6.0",
-        "@itwin/imodels-access-backend": "^2.2.1",
-        "@itwin/service-authorization": "^0.7.0"
-    }
+  "name": "itwin-twinmaker-connector-data-reader",
+  "scripts": {
+    "build": "tsc -p .",
+    "run": "tsc -p . && node dist/index.js",
+    "bundle": "mv  ./node_modules ./dist/node_modules",
+    "zip": "cd dist && zip -9 -r data-reader.zip . && cd ..",
+    "dist": "npm run clean && npm install && npm run build && npm run bundle && npm run zip && npm run upload",
+    "clean": "rm -rf ./node_modules data-reader.zip ./dist",
+    "upload": "aws lambda update-function-code --function-name iTwinTMDataReader --zip-file fileb://./dist/data-reader.zip"
+  },
+  "dependencies": {
+    "@itwin/service-authorization": "^0.7.0",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^18.13.0",
+    "typescript": "^4.9.5"
+  }
 }
